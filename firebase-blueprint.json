@@ -1,0 +1,46 @@
+{
+  "entities": {
+    "SyncGroup": {
+      "title": "SyncGroup",
+      "description": "A group of synced accounts sharing video progress.",
+      "type": "object",
+      "properties": {
+        "members": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of user UIDs in this sync group."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the group was created."
+        }
+      },
+      "required": ["members", "createdAt"]
+    },
+    "VideoProgress": {
+      "title": "VideoProgress",
+      "description": "Progress of a specific YouTube video.",
+      "type": "object",
+      "properties": {
+        "videoId": { "type": "string" },
+        "title": { "type": "string" },
+        "thumbnail": { "type": "string" },
+        "progress": { "type": "number", "description": "Progress in seconds." },
+        "lastUpdated": { "type": "string", "format": "date-time" },
+        "lastUpdatedBy": { "type": "string" }
+      },
+      "required": ["videoId", "title", "thumbnail", "progress", "lastUpdated", "lastUpdatedBy"]
+    }
+  },
+  "firestore": {
+    "/groups/{groupId}": {
+      "schema": { "$ref": "#/entities/SyncGroup" },
+      "description": "Sync groups."
+    },
+    "/groups/{groupId}/videos/{videoId}": {
+      "schema": { "$ref": "#/entities/VideoProgress" },
+      "description": "Video progress for a sync group."
+    }
+  }
+}

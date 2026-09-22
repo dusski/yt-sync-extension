@@ -1,0 +1,5 @@
+{
+  "name": "YouTube Sync Extension",
+  "description": "A Chrome extension to sync YouTube video progress across multiple accounts using a shared sync code.",
+  "requestFramePermissions": []
+}

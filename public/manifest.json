@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Sync Extension",
+  "version": "1.0",
+  "description": "Sync YouTube video progress across multiple accounts.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://firestore.googleapis.com/*",
+    "*://identitytoolkit.googleapis.com/*"
+  ],
+  "action": {
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/watch*"],
+      "js": ["assets/content.js"]
+    }
+  ],
+  "background": {
+    "service_worker": "assets/background.js"
+  }
+}
